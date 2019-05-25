@@ -7,15 +7,15 @@ import webbrowser
 
 
 """Abstract length in sentences"""
-sentences = 10
+sentences = 12
 
 """News Sites --- Add RSS urls to scan"""
 urls = [
-    "https://www.faz.net/rss/aktuell/",
     "https://taz.de/!s=&ExportStatus=Intern&SuchRahmen=Online;rss/",
+    "https://www.faz.net/rss/aktuell/",
     "http://rss.sueddeutsche.de/rss/Topthemen",
-    "http://www.handelsblatt.com/contentexport/feed/top-themen",
-    "https://www.welt.de/feeds/latest.rss",
+    #"http://www.handelsblatt.com/contentexport/feed/top-themen",
+    "https://www.welt.de/feeds/topnews.rss",
     "http://newsfeed.zeit.de/index",
     "https://www.fr.de/politik/rssfeed.rdf",
     "https://www.heise.de/rss/heise-top-atom.xml",
@@ -72,7 +72,9 @@ for url in urls:
                 .replace(":", "")\
                 .replace("?", "")
 
-            item = """<p>%s <a href="%s" target="_blank" style="text-decoration: none">%s</a> - <a href="https://smmry.com/""" + news_item["link"] + """/#&SM_LENGTH=""" + str(sentences) + """&SM_HEAT_MAP" target="_blank" style="text-decoration: none">abstract</a></p>
+            item = """<p>%s <a href="%s" target="_blank" style="text-decoration: none">%s</a>
+             - <a href="https://smmry.com/""" + news_item["link"] + """/#&SM_LENGTH="""\
+                   + str(sentences) + """&SM_HEAT_MAP" target="_blank" style="text-decoration: none">abstract</a></p>
             """
             wrapper += item % (n, news_item["link"], news_item["title"])
             items_number += 1
@@ -94,7 +96,9 @@ for url in urls:
             news_item["link"] = entry.find("link")["href"]
             news_items.append(news_item)
 
-            item = """<p>%s <a href="%s" target="_blank" style="text-decoration: none">%s</a></p>
+            item = """<p>%s <a href="%s" target="_blank" style="text-decoration: none">%s</a>
+             - <a href="https://smmry.com/""" + news_item["link"] + """/#&SM_LENGTH="""\
+                   + str(sentences) + """&SM_HEAT_MAP" target="_blank" style="text-decoration: none">abstract</a></p>
                     """
             wrapper += item % (n, news_item["link"], news_item["title"])
             items_number += 1
