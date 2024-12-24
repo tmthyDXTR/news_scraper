@@ -26,8 +26,9 @@ urls = [
 items_number = 0
 timestamp = datetime.now().strftime("%A %d-%m-%Y %H:%M")
 
-save_path_file = "C:/Users/dxtr/Documents/news/daily_news_" \
-                 + time.strftime("%Y%m%d-%H%M") + ".html"
+save_path_file = os.path.join(os.path.expanduser("~"), "Documents", "news", "daily_news_" + time.strftime("%Y%m%d-%H%M") + ".html")
+# Create the directory if it doesn't exist
+os.makedirs(os.path.dirname(save_path_file), exist_ok=True)
 
 f = open(save_path_file, "w", encoding="utf-8")
 
